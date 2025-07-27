@@ -1,6 +1,6 @@
 import { ThemeToggle } from "@/components/ThemeToggle";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Label } from "./label";
+import { Label } from "./Label";
 
 const meta: Meta<typeof Label> = {
   title: "Atoms/Label",

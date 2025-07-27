@@ -104,7 +104,7 @@ export const Dismissible: Story = {
     children: "This banner can be dismissed by clicking the X button.",
     variant: "info",
     dismissible: true,
-    dismissIcon: true,
+
     onDismiss: () => console.log("Banner dismissed"),
   },
 };

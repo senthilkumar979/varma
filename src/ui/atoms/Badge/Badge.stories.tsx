@@ -365,7 +365,7 @@ export const Accessibility: Story = {
 
       <div className="flex flex-wrap gap-4">
         <Badge asChild>
-          <button type="button" aria-label="Remove tag" variant="secondary">
+          <button type="button" aria-label="Remove tag">
             Tag
             <svg
               xmlns="http://www.w3.org/2000/svg"

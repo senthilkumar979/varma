@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { Theme, ThemeMode, ThemeContextType } from "../types/theme";
 
 export interface ThemeProviderProps {
   children: ReactNode;
@@ -14,4 +15,4 @@ export interface ThemeContextValue {
 }
 
 // Re-export types from the main theme types file
-export type { Theme, ThemeMode, ThemeContextType } from "@/types/theme";
+export type { Theme, ThemeMode, ThemeContextType };

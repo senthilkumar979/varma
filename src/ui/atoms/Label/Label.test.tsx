@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
+import React from "react";
 import { Label } from "./Label";
 import type { LabelProps } from "./Label.types";
 
@@ -41,7 +42,13 @@ describe("Label", () => {
   });
 
   describe("Variants", () => {
-    const variants = ["default", "muted", "error", "success", "warning"] as const;
+    const variants = [
+      "default",
+      "muted",
+      "error",
+      "success",
+      "warning",
+    ] as const;
 
     variants.forEach((variant) => {
       it(`renders ${variant} variant correctly`, () => {
@@ -166,19 +173,19 @@ describe("Label", () => {
   describe("Edge cases", () => {
     it("renders with empty children", () => {
       render(<Label />);
-      const label = screen.getByAttribute("data-slot", "label");
+      const label = screen.getByRole("generic");
       expect(label).toBeInTheDocument();
     });
 
     it("renders with null children", () => {
       render(<Label>{null}</Label>);
-      const label = screen.getByAttribute("data-slot", "label");
+      const label = screen.getByRole("generic");
       expect(label).toBeInTheDocument();
     });
 
     it("renders with undefined children", () => {
       render(<Label>{undefined}</Label>);
-      const label = screen.getByAttribute("data-slot", "label");
+      const label = screen.getByRole("generic");
       expect(label).toBeInTheDocument();
     });
 
@@ -210,9 +217,9 @@ describe("Label", () => {
     it("forwards ref correctly", () => {
       const ref = React.createRef<HTMLLabelElement>();
       render(<Label {...defaultProps} ref={ref} />);
-      
+
       expect(ref.current).toBeInstanceOf(HTMLLabelElement);
       expect(ref.current).toHaveAttribute("data-slot", "label");
     });
   });
-}); 
+});

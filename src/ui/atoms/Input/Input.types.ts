@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export interface InputProps extends React.ComponentProps<"input"> {
+export interface InputProps extends Omit<React.ComponentProps<"input">, "size"> {
   /**
    * Optional CSS class name to apply to the input
    */
@@ -77,10 +77,7 @@ export interface InputProps extends React.ComponentProps<"input"> {
    * Whether the input should spell check
    */
   spellCheck?: boolean;
-  /**
-   * The size of the input
-   */
-  size?: number;
+
   /**
    * Whether the input should be multiple (for file inputs)
    */

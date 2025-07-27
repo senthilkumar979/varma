@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Input } from "./input";
+import { Input } from "./Input";
 import { Label } from "../Label";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
@@ -397,7 +397,7 @@ export const ValidationExample: Story = {
         <Input
           id="birthdate"
           type="date"
-          max={new Date().toISOString().split("T")[0]}
+          max="2024-12-31"
         />
       </div>
     </div>
