@@ -1,69 +1,103 @@
-# React + TypeScript + Vite
+# Varma – UI Components Micro Frontend (MFE)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#### Varma is the centralized, reusable UI component library built as a Micro Frontend (MFE) for the Fandoc ecosystem. It houses headless, Tailwind, and customizable components used across various frontends in a modular and consistent way.
 
-Currently, two official plugins are available:
+## Purpose
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ - Serve as the single source of truth for UI components
 
-## Expanding the ESLint configuration
+ - Provide consistency in design and behavior across MFEs
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+ - Enable rapid development via reusable components
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+ - Support theme customization and accessibility out of the box
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+ - Framework: React + Vite + TypeScript
+
+ - Styling: Tailwind CSS
+
+ - Design Tokens: Theme-driven with dynamic support
+
+ - Animation: Framer Motion
+
+## Features
+
+ - Headless UI components with custom styling support
+
+ - Theme switcher (default + organization-defined themes)
+
+ - Modular design for embedding in any MFE
+
+ - Accessible (ARIA-compliant) components
+
+ - Storybook integration for visual reference and testing
+
+ - Built-in support for light/dark mode and dynamic colors
+
+
+## Development
+
+Install
+
+```
+pnpm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Start Storybook (for development)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+pnpm storybook
+```
+
+Build
+```
+pnpm build
+```
+## Theming
+
+ - Default theme is provided
+
+ - Admin-defined organization themes can be dynamically loaded via API
+
+## Consumption
+
+ - Varma is deployed as a remote module
+
+ - Other MFEs can consume components using Module Federation
+
+## Example usage:
+
+```
+import { Button } from 'varma/Button';
+```
+
+## Contributing
+
+ - Follow component structure and naming conventions
+
+ - Add stories in *.stories.tsx for each component
+
+ - Ensure accessibility and responsiveness
+
+ - Write unit tests using your preferred framework (Vitest recommended)
+
+## Roadmap
+
+ - Add more form elements with validation
+
+ - Component-level dark mode support
+
+ - Design system documentation site
+
+ - Custom icon library support
+
+## Maintainers
+
+ - Senthil Kumar
+
+## UI/UX Team of Fandoc
+
+ - For questions or requests, please raise an issue or reach out to the Fandoc design system team.
+
