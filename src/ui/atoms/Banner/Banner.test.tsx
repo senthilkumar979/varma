@@ -256,7 +256,7 @@ describe("Banner", () => {
   describe("Edge cases", () => {
     it("renders with empty children", () => {
       render(<Banner children="" />);
-      const banner = screen.getByRole("generic", { hidden: true });
+      const banner = screen.getByTestId("banner");
       expect(banner).toBeInTheDocument();
     });
 

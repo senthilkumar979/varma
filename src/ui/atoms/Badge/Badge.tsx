@@ -9,6 +9,7 @@ function Badge({ className, variant, asChild = false, ...props }: BadgeProps) {
   return (
     <Comp
       data-slot="badge"
+      data-testid="badge"
       className={cn(badgeVariants({ variant }), className)}
       {...props}
     />

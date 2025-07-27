@@ -1,11 +1,10 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import type { Theme } from "@/types/theme";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   applyTheme,
-  getSystemTheme,
   getStoredThemeMode,
   setStoredThemeMode,
 } from "./themeUtils";
-import type { Theme } from "@/types/theme";
 
 // Helper function to create complete theme objects
 const createCompleteTheme = (overrides: Partial<Theme> = {}): Theme => ({
@@ -178,34 +177,6 @@ describe("themeUtils", () => {
     });
   });
 
-  describe("getSystemTheme", () => {
-    it("should return dark when system prefers dark", () => {
-      mockMatchMedia.mockReturnValue({
-        matches: true,
-      });
-
-      const result = getSystemTheme();
-
-      expect(result).toBe("dark");
-      expect(mockMatchMedia).toHaveBeenCalledWith(
-        "(prefers-color-scheme: dark)"
-      );
-    });
-
-    it("should return light when system prefers light", () => {
-      mockMatchMedia.mockReturnValue({
-        matches: false,
-      });
-
-      const result = getSystemTheme();
-
-      expect(result).toBe("light");
-      expect(mockMatchMedia).toHaveBeenCalledWith(
-        "(prefers-color-scheme: dark)"
-      );
-    });
-  });
-
   describe("getStoredThemeMode", () => {
     it("should return stored theme mode from localStorage", () => {
       mockLocalStorage.getItem.mockReturnValue("dark");
@@ -216,36 +187,8 @@ describe("themeUtils", () => {
       expect(mockLocalStorage.getItem).toHaveBeenCalledWith("theme-mode");
     });
 
-    it("should return system when no theme mode is stored", () => {
-      mockLocalStorage.getItem.mockReturnValue(null);
-
-      const result = getStoredThemeMode();
-
-      expect(result).toBe("system");
-      expect(mockLocalStorage.getItem).toHaveBeenCalledWith("theme-mode");
-    });
-
-    it("should return system when localStorage throws an error", () => {
-      mockLocalStorage.getItem.mockImplementation(() => {
-        throw new Error("localStorage not available");
-      });
-
-      const result = getStoredThemeMode();
-
-      expect(result).toBe("system");
-    });
-
-    it("should return system when stored value is invalid", () => {
-      mockLocalStorage.getItem.mockReturnValue("invalid-theme");
-
-      const result = getStoredThemeMode();
-
-      expect(result).toBe("invalid-theme"); // The actual implementation doesn't validate
-      expect(mockLocalStorage.getItem).toHaveBeenCalledWith("theme-mode");
-    });
-
     it("should return valid stored values", () => {
-      const validModes = ["light", "dark", "system"] as const;
+      const validModes = ["light", "dark"] as const;
 
       validModes.forEach((mode) => {
         vi.clearAllMocks();
@@ -267,7 +210,7 @@ describe("themeUtils", () => {
     });
 
     it("should handle all valid theme modes", () => {
-      const validModes = ["light", "dark", "system"] as const;
+      const validModes = ["light", "dark"] as const;
 
       validModes.forEach((mode) => {
         vi.clearAllMocks();
@@ -322,13 +265,7 @@ describe("themeUtils", () => {
           primaryForeground: "222.2 47.4% 11.2%",
         },
       });
-
-      // Mock system theme
       mockMatchMedia.mockReturnValue({ matches: true });
-
-      // Test system theme detection
-      const systemTheme = getSystemTheme();
-      expect(systemTheme).toBe("dark");
 
       // Test theme application
       applyTheme(theme);
@@ -338,18 +275,6 @@ describe("themeUtils", () => {
       expect(mockDocument.documentElement.classList.add).toHaveBeenCalledWith(
         "dark"
       );
-
-      // Test theme mode storage
-      setStoredThemeMode("system");
-      expect(mockLocalStorage.setItem).toHaveBeenCalledWith(
-        "theme-mode",
-        "system"
-      );
-
-      // Test theme mode retrieval
-      mockLocalStorage.getItem.mockReturnValue("system");
-      const storedMode = getStoredThemeMode();
-      expect(storedMode).toBe("system");
     });
 
     it("should handle edge cases gracefully", () => {
@@ -378,7 +303,6 @@ describe("themeUtils", () => {
         throw new Error("localStorage unavailable");
       });
 
-      expect(getStoredThemeMode()).toBe("system");
       expect(() => setStoredThemeMode("dark")).not.toThrow();
     });
   });

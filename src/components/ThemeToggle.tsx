@@ -1,12 +1,11 @@
-
 import { useTheme } from "@/contexts/useTheme";
-import { Button } from "@/ui/atoms/Button";
+import { Button } from "@atoms/Button";
 
 export function ThemeToggle() {
   const { themeMode, setThemeMode, isLoading, error, refreshTheme } =
     useTheme();
 
-  const handleThemeChange = (mode: "light" | "dark" | "system") => {
+  const handleThemeChange = (mode: "light" | "dark") => {
     setThemeMode(mode);
   };
 
@@ -30,14 +29,6 @@ export function ThemeToggle() {
           disabled={isLoading}
         >
           Dark
-        </Button>
-        <Button
-          variant={themeMode === "system" ? "default" : "outline"}
-          size="sm"
-          onClick={() => handleThemeChange("system")}
-          disabled={isLoading}
-        >
-          System
         </Button>
       </div>
 

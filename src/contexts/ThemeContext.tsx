@@ -7,7 +7,6 @@ import type { Theme, ThemeContextType, ThemeMode } from "@/types/theme";
 import {
   applyTheme,
   getStoredThemeMode,
-  getSystemTheme,
   setStoredThemeMode,
 } from "@/utils/themeUtils";
 import { useEffect, useState } from "react";
@@ -16,7 +15,7 @@ import type { ThemeProviderProps } from "./ThemeContext.types";
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme | null>(null);
-  const [themeMode, setThemeModeState] = useState<ThemeMode>(
+  const [themeModeState, setThemeModeState] = useState<ThemeMode>(
     getStoredThemeMode()
   );
   const [isLoading, setIsLoading] = useState(true);
@@ -47,11 +46,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   const setThemeMode = (mode: ThemeMode) => {
     setThemeModeState(mode);
     setStoredThemeMode(mode);
-    if (mode === "system") {
-      loadFallbackTheme(getSystemTheme());
-    } else {
-      loadFallbackTheme(mode);
-    }
+    loadFallbackTheme(mode);
   };
 
   const refreshTheme = async () => {
@@ -72,20 +67,9 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     initializeTheme();
   }, []);
 
-  useEffect(() => {
-    if (themeMode === "system") {
-      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-      const handleChange = () => {
-        loadFallbackTheme(getSystemTheme());
-      };
-      mediaQuery.addEventListener("change", handleChange);
-      return () => mediaQuery.removeEventListener("change", handleChange);
-    }
-  }, [themeMode]);
-
   const value: ThemeContextType = {
     theme,
-    themeMode,
+    themeMode: themeModeState,
     isLoading,
     error,
     setThemeMode,

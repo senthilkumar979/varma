@@ -335,7 +335,7 @@ describe("Textarea", () => {
     it("handles empty helperText", () => {
       render(<Textarea {...defaultProps} helperText="" />);
       // Empty helperText should not be rendered
-      expect(screen.queryByText("")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("helper-text")).not.toBeInTheDocument();
     });
 
     it("handles whitespace-only helperText", () => {

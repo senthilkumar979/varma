@@ -28,7 +28,7 @@ export interface Theme {
   isDark: boolean;
 }
 
-export type ThemeMode = "light" | "dark" | "system";
+export type ThemeMode = "light" | "dark";
 
 export interface ThemeContextType {
   theme: Theme | null;

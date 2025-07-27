@@ -1,5 +1,7 @@
 import type { Theme } from "@/types/theme";
 
+type ThemeMode = "light" | "dark";
+
 export function applyTheme(theme: Theme): void {
   const root = document.documentElement;
 
@@ -17,24 +19,21 @@ export function applyTheme(theme: Theme): void {
   }
 }
 
-export function getSystemTheme(): "light" | "dark" {
+export function getSystemTheme(): ThemeMode {
   return window.matchMedia("(prefers-color-scheme: dark)").matches
     ? "dark"
     : "light";
 }
 
-export function getStoredThemeMode(): "light" | "dark" | "system" {
+export function getStoredThemeMode(): ThemeMode {
   try {
-    return (
-      (localStorage.getItem("theme-mode") as "light" | "dark" | "system") ||
-      "system"
-    );
+    return (localStorage.getItem("theme-mode") as ThemeMode) || "dark";
   } catch {
-    return "system";
+    return "dark";
   }
 }
 
-export function setStoredThemeMode(mode: "light" | "dark" | "system"): void {
+export function setStoredThemeMode(mode: ThemeMode): void {
   try {
     localStorage.setItem("theme-mode", mode);
   } catch (error) {

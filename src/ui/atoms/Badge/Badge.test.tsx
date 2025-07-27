@@ -148,9 +148,9 @@ describe("Badge", () => {
         </Badge>
       );
 
-      const slot = screen.getByTestId("slot");
-      expect(slot).toBeInTheDocument();
-      expect(slot).toHaveTextContent("Button Badge");
+      const badge = screen.getByTestId("badge");
+      expect(badge).toBeInTheDocument();
+      expect(badge).toHaveTextContent("Button Badge");
     });
 
     it("should pass props to Slot when asChild is true", () => {
@@ -160,9 +160,9 @@ describe("Badge", () => {
         </Badge>
       );
 
-      const slot = screen.getByTestId("slot");
-      expect(slot).toBeInTheDocument();
-      expect(slot).toHaveAttribute("data-slot", "badge");
+      const badge = screen.getByTestId("badge");
+      expect(badge).toBeInTheDocument();
+      expect(badge).toHaveAttribute("data-slot", "badge");
     });
   });
 
@@ -273,7 +273,7 @@ describe("Badge", () => {
     it("should handle empty children", () => {
       render(<Badge></Badge>);
 
-      const badge = screen.getByRole("generic");
+      const badge = screen.getByTestId("badge");
       expect(badge).toBeInTheDocument();
       expect(badge).toHaveAttribute("data-slot", "badge");
     });
@@ -281,7 +281,7 @@ describe("Badge", () => {
     it("should handle null children", () => {
       render(<Badge>{null}</Badge>);
 
-      const badge = screen.getByRole("generic");
+      const badge = screen.getByTestId("badge");
       expect(badge).toBeInTheDocument();
       expect(badge).toHaveAttribute("data-slot", "badge");
     });
@@ -289,7 +289,7 @@ describe("Badge", () => {
     it("should handle undefined children", () => {
       render(<Badge>{undefined}</Badge>);
 
-      const badge = screen.getByRole("generic");
+      const badge = screen.getByTestId("badge");
       expect(badge).toBeInTheDocument();
       expect(badge).toHaveAttribute("data-slot", "badge");
     });

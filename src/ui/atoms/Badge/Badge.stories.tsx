@@ -109,7 +109,7 @@ export const LongText: Story = {
   },
 };
 
-export const Number: Story = {
+export const NumberValue: Story = {
   args: {
     children: "42",
     variant: "default",
@@ -349,16 +349,16 @@ export const Accessibility: Story = {
   render: () => (
     <div className="space-y-4">
       <div className="flex flex-wrap gap-4">
-        <Badge role="status" aria-label="Status: Active" variant="default">
+        <Badge role="output" aria-label="Status: Active" variant="default">
           Active
         </Badge>
-        <Badge role="status" aria-label="Status: Pending" variant="secondary">
+        <Badge role="output" aria-label="Status: Pending" variant="secondary">
           Pending
         </Badge>
-        <Badge role="status" aria-label="Status: Error" variant="destructive">
+        <Badge role="output" aria-label="Status: Error" variant="destructive">
           Error
         </Badge>
-        <Badge role="status" aria-label="Status: Completed" variant="outline">
+        <Badge role="output" aria-label="Status: Completed" variant="outline">
           Completed
         </Badge>
       </div>

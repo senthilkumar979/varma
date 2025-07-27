@@ -42,6 +42,8 @@ export default defineConfig({
         "src/contexts/**/*.types.ts",
         "src/ui/**/*/index.ts",
         "src/ui/**/*/*.types.ts",
+        "storybook-static/**/*",
+        "dist/**/*",
       ],
     },
   },

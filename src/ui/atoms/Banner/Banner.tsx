@@ -69,7 +69,10 @@ export function Banner({
   if (!show) return null;
 
   return (
-    <div className={cn(bannerVariants({ variant }), className)}>
+    <div
+      data-testid="banner"
+      className={cn(bannerVariants({ variant }), className)}
+    >
       {showGrid && (
         <Grid
           cellSize={13}
@@ -94,9 +97,7 @@ export function Banner({
           onClick={onDismiss}
           aria-label="Dismiss banner"
         >
-          {dismissText ? (
-            dismissText
-          ) : (
+          {dismissText || (
             <svg
               className={cn(bannerDismissIconVariants({ variant }))}
               width="15"

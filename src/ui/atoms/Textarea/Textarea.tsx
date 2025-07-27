@@ -26,7 +26,11 @@ function Textarea({
         </div>
       )}
       {!isError && helperText && (
-        <p className="mt-2 text-xs text-muted-foreground" aria-live="polite">
+        <p
+          data-testid="helper-text"
+          className="mt-2 text-xs text-muted-foreground"
+          aria-live="polite"
+        >
           {helperText}
         </p>
       )}

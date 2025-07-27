@@ -28,12 +28,6 @@ const hexToRgba = (hex: string, alpha: number): string => {
 // Variant color mapping
 const getVariantColors = (variant: string) => {
   switch (variant) {
-    case "primary":
-      return {
-        base: "#3b82f6", // blue-500
-        ripple: "#1d4ed8", // blue-700
-        text: "#ffffff",
-      };
     case "secondary":
       return {
         base: "#6b7280", // gray-500
