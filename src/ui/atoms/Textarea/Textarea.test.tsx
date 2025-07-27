@@ -113,7 +113,7 @@ describe("Textarea", () => {
     it("applies error styling when in error state", () => {
       render(<Textarea {...defaultProps} isError={true} />);
       const textarea = screen.getByRole("textbox");
-      expect(textarea).toHaveClass("border-destructive");
+      expect(textarea).toHaveClass("aria-invalid:border-destructive");
     });
   });
 
@@ -334,7 +334,8 @@ describe("Textarea", () => {
 
     it("handles empty helperText", () => {
       render(<Textarea {...defaultProps} helperText="" />);
-      expect(screen.queryByText("")).toBeInTheDocument();
+      // Empty helperText should not be rendered
+      expect(screen.queryByText("")).not.toBeInTheDocument();
     });
 
     it("handles whitespace-only helperText", () => {

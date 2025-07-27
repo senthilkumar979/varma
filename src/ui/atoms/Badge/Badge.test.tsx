@@ -273,7 +273,7 @@ describe("Badge", () => {
     it("should handle empty children", () => {
       render(<Badge></Badge>);
 
-      const badge = screen.getByRole("generic", { hidden: true });
+      const badge = screen.getByRole("generic");
       expect(badge).toBeInTheDocument();
       expect(badge).toHaveAttribute("data-slot", "badge");
     });
@@ -281,7 +281,7 @@ describe("Badge", () => {
     it("should handle null children", () => {
       render(<Badge>{null}</Badge>);
 
-      const badge = screen.getByRole("generic", { hidden: true });
+      const badge = screen.getByRole("generic");
       expect(badge).toBeInTheDocument();
       expect(badge).toHaveAttribute("data-slot", "badge");
     });
@@ -289,7 +289,7 @@ describe("Badge", () => {
     it("should handle undefined children", () => {
       render(<Badge>{undefined}</Badge>);
 
-      const badge = screen.getByRole("generic", { hidden: true });
+      const badge = screen.getByRole("generic");
       expect(badge).toBeInTheDocument();
       expect(badge).toHaveAttribute("data-slot", "badge");
     });
